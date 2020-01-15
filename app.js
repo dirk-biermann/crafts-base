@@ -77,6 +77,12 @@ app.use('/logout', logout);
 
 // routes RESTRICTED views --------------------------------
 
+const project_overview = require('./routes/secret/project-overview.js');
+app.use('/secret/project/view', project_overview);
+
+const component_overview = require('./routes/secret/component-overview.js');
+app.use('/secret/component/view', component_overview);
+
 /*
 const create_room = require('./routes/secret/create.js');
 app.use('/secret/create', create_room);
