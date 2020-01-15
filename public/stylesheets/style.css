@@ -1,0 +1,76 @@
+:root {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px; }
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; }
+
+body {
+  line-height: 1.0;
+  background-color: #ffffff;
+  color: #000; }
+
+/* ----------------------------------- */
+.err-message {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px; }
+
+#dwb-logo {
+  height: 1.25rem; }
+
+#express-logo {
+  height: 5.0rem; }
+
+#express-pic {
+  width: 150px;
+  margin: 10px 20px; }
+
+.padding-0 {
+  padding: auto 0 !important; }
+
+.small-caps {
+  font-variant: small-caps; }
+
+.nav-hr {
+  border: 0;
+  border-top: 2px solid #eee;
+  margin: 5px 0; }
+
+.header-fix {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%; }
+
+.3d-shadow-bottom {
+  box-shadow: 0px 0px 5px #444; }
+
+.footer-fix {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%; }
+
+#header-spc {
+  height: 130px;
+  max-height: 130px;
+  min-height: 130px; }
+
+#footer-spc {
+  height: 50px;
+  max-height: 50px;
+  min-height: 50px; }
+
+/*# sourceMappingURL=style.css.map */

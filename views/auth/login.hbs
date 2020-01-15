@@ -1,0 +1,26 @@
+<div class="w3-container">
+  <div class="w3-display-container">
+    <div class="w3-display-topmiddle">
+      <div class="w3-panel small-caps w3-gray w3-xlarge">Login User</div>
+      <form id="form" action="/login" method="POST">
+          <label for="email">EMail</label><br>
+          <input type="text" name="email"
+            placeholder="Your EMail"><br><br>
+
+          <label for="password">Password</label><br>
+          <input type="password" name="password"
+            placeholder="********"><br><br>
+
+          <button type="submit">Login User</button>
+      </form>
+      <div>&nbsp;</div>
+      {{#if errorMessage}}
+      <div class="w3-card w3-red">
+        <div class="w3-container w3-center">
+          <p>{{errorMessage}}</p>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

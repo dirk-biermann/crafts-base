@@ -1,0 +1,37 @@
+<div class="header-fix 3d-shadow-bottom">
+    <div class="w3-bar w3-indigo">
+        <div class="w3-bar-item padding-0"><img id="express-logo" src="/images/express-logo.png" alt="express logo"></div>
+        <div class="w3-bar-item"><h1>{{title}}</h1></div>
+    </div>
+    <div class="w3-bar w3-blue">
+    <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
+
+
+    <div class="w3-dropdown-hover">
+        <button class="w3-button"><i class="fa fa-th"></i> Rooms <i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="/view" class="w3-bar-item w3-button"><i class="fa fa-eye"></i> View Rooms</a>
+        {{#if status.logged }}
+            <hr class="nav-hr">
+            <a href="/secret/edit" class="w3-bar-item w3-button"><i class="fa fa-pencil"></i> Edit Room</a>
+            <hr class="nav-hr">
+            <a href="/secret/create" class="w3-bar-item w3-button"><i class="fa fa-plus"></i> Create Room</a>
+            <a href="/secret/delete" class="w3-bar-item w3-button"><i class="fa fa-minus"></i> Delete Room</a>
+        {{/if}}
+        </div>
+    </div>
+
+    {{#if status.logged }}
+        <a href="/logout" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-in"></i> Logout</a>
+    {{else}}
+        {{#if status.login }}
+        {{else}}
+        <a href="/signup" class="w3-bar-item w3-button"><i class="fa fa-address-card-o"></i> Sign Up</a>
+        <a href="/login" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-in"></i> Login</a>
+        {{/if}}
+    {{/if}}
+    <a href="{{source}}/about" class="w3-bar-item w3-right w3-button"><i class="fa fa-info"></i> About</a>
+    </div>
+</div>
+<div id="header-spc"></div>
+
