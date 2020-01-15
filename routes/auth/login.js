@@ -2,6 +2,7 @@ const express = require('express');
 const loginController = express.Router();
 const User = require('../../models/user');
 
+
 // BCrypt to encrypt passwords
 const bcrypt         = require("bcryptjs");
 const bcryptSalt     = 10;
@@ -38,7 +39,9 @@ loginController.post("/", (req, res, next) => {
                 } else {
                     // Save the login in the session!
                     req.session.currentUser = user;
-                    res.redirect("/");
+                    data.status.logged = true;
+                    data.name = user.fullName;
+                    res.render("index.hbs", data );
                 } 
             }
         })
