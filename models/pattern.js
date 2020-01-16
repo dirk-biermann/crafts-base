@@ -7,7 +7,7 @@ const patternSchema = new Schema ({
   typeOfClothes:  { type: String, required: [true, 'Select the type of clothes the pattern will create']},
   instructions:   { type: String, required: [true, 'Add necessary steps and information to sew the pattern']},
   imageUrl:        String
-
+  owner:          { type: Schema.Types.ObjectId, ref: 'User'}
   },{
       timestamps: {
         createdAt: "created_at",

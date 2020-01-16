@@ -111,6 +111,15 @@ app.use('/secret/project/view', project_overview);
 const component_overview = require('./routes/secret/component-overview.js');
 app.use('/secret/component/view', component_overview);
 
+const component_detail = require('./routes/secret/component-detail.js');
+app.use('/secret/component/detail', component_detail);
+
+const component_edit = require('./routes/secret/component-edit.js');
+app.use('/secret/component/edit', component_edit);
+
+const component_create = require('./routes/secret/component-create.js');
+app.use('/secret/component/create', component_create);
+
 /*
 const create_room = require('./routes/secret/create.js');
 app.use('/secret/create', create_room);
