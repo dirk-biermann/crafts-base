@@ -10,6 +10,7 @@ const fabricSchema = new Schema ({
   material:     String,
   color:        String,
   pattern:      Boolean,
+  owner:        { type: Schema.Types.ObjectId, ref: 'User'}
   },{
       timestamps: {
         createdAt: "created_at",
