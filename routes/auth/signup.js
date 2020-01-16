@@ -2,7 +2,7 @@ const express = require('express');
 const signupController = express.Router();
 const User = require('../../models/user');
 
-let data = { router: "signup", status: {} };
+let data = { router: "signup", root:"/", status: {} };
 
 // BCrypt to encrypt passwords
 const bcrypt         = require("bcryptjs");

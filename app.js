@@ -15,7 +15,7 @@ const MongoStore = require("connect-mongo")(session);
 
 const dbName = 'crafts-base';
 mongoose
-  .connect(`mongodb://localhost/${dbName}`, {useNewUrlParser: true})
+  .connect(`mongodb://localhost/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -48,7 +48,9 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
-  })
+  }),
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -57,6 +59,32 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper({
+    eq: function (v1, v2) {
+        return v1 === v2;
+    },
+    ne: function (v1, v2) {
+        return v1 !== v2;
+    },
+    lt: function (v1, v2) {
+        return v1 < v2;
+    },
+    gt: function (v1, v2) {
+        return v1 > v2;
+    },
+    lte: function (v1, v2) {
+        return v1 <= v2;
+    },
+    gte: function (v1, v2) {
+        return v1 >= v2;
+    },
+    and: function () {
+        return Array.prototype.slice.call(arguments).every(Boolean);
+    },
+    or: function () {
+        return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
+    }
+});
 
 // default value for title local
 app.locals.title = 'Craft Base - project administration';
@@ -76,6 +104,12 @@ const logout = require('./routes/auth/logout.js');
 app.use('/logout', logout);
 
 // routes RESTRICTED views --------------------------------
+
+const project_overview = require('./routes/secret/project-overview.js');
+app.use('/secret/project/view', project_overview);
+
+const component_overview = require('./routes/secret/component-overview.js');
+app.use('/secret/component/view', component_overview);
 
 /*
 const create_room = require('./routes/secret/create.js');

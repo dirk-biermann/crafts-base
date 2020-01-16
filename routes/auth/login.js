@@ -7,7 +7,7 @@ const User = require('../../models/user');
 const bcrypt         = require("bcryptjs");
 const bcryptSalt     = 10;
 
-let data = { router: "login", status: { login: true } };
+let data = { router: "login", root:"/", status: { login: true } };
 
 loginController.get('/', (req, res, next) => {
     data.source = "auth/login";
@@ -40,7 +40,9 @@ loginController.post("/", (req, res, next) => {
                     // Save the login in the session!
                     req.session.currentUser = user;
                     data.status.logged = true;
+                    delete data.status.login;
                     data.name = user.fullName;
+                    data.source = "";
                     res.render("index.hbs", data );
                 } 
             }

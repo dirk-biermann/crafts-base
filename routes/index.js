@@ -1,7 +1,7 @@
 const express = require('express');
 const mainController  = express.Router();
 
-let data = { router: "home", status: {} };
+let data = { router: "home", root:"", status: {} };
 
 mainController.use((req, res, next) => {
     delete data.status.about;
