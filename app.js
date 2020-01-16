@@ -44,12 +44,12 @@ app.use(require('node-sass-middleware')({
 //Authentication & Sessions
 app.use(session({
   secret: "basic-auth-secret",
-  cookie: { maxAge: 360000 },
+  cookie: { maxAge: 3600000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
   }),
-  resave: true,
+  resave: false,
   saveUninitialized: true
 }));
 
@@ -87,7 +87,8 @@ hbs.registerHelper({
 });
 
 // default value for title local
-app.locals.title = 'Craft Base - project administration';
+app.locals.title = 'Crafts Base';
+app.locals.subtitle = 'project administration';
 app.locals.version = '0.01';
 app.locals.build = '0001';
 
@@ -98,16 +99,26 @@ const signup = require('./routes/auth/signup.js');
 app.use('/signup', signup);
 
 const login = require('./routes/auth/login.js');
-app.use('/login', login);
+app.use('/login/', login);
 
 const logout = require('./routes/auth/logout.js');
 app.use('/logout', logout);
 
 // routes RESTRICTED views --------------------------------
-
+// PROJECT 
 const project_overview = require('./routes/secret/project-overview.js');
 app.use('/secret/project/view', project_overview);
 
+const project_detail = require('./routes/secret/project-detail.js');
+app.use('/secret/project/detail', project_detail);
+
+const project_create = require('./routes/secret/project-create.js');
+app.use('/secret/project/create', project_create);
+
+const project_edit = require('./routes/secret/project-edit.js');
+app.use('/secret/project/edit', project_edit);
+
+// COMPONENT 
 const component_overview = require('./routes/secret/component-overview.js');
 app.use('/secret/component/view', component_overview);
 

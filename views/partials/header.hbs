@@ -1,14 +1,14 @@
 <div class="header-fix 3d-shadow-bottom">
     <div class="w3-bar w3-indigo">
         <div class="w3-bar-item padding-0"><img id="express-logo" src="/images/express-logo.png" alt="express logo"></div>
-        <div class="w3-bar-item"><h1>{{title}}</h1></div>
+        <div class="w3-bar-item"><h1>{{title}} - {{subtitle}}</h1></div>
     </div>
     <div class="w3-bar w3-blue">
     <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
 
     {{#if status.logged }}
     <div class="w3-dropdown-hover">
-        <button class="w3-button"><i class="fa fa-th-large"></i> Projects <i class="fa fa-caret-down"></i></button>
+        <button class="w3-button"><i class="fa fa-th-large"></i> Projects</button>
         <div class="w3-dropdown-content w3-bar-block w3-card-4">
             <a href="/secret/project/view" class="w3-bar-item w3-button"><i class="fa fa-th-list"></i> View Projects</a>
             <hr class="nav-hr">
@@ -16,11 +16,17 @@
         </div>
     </div>
     <div class="w3-dropdown-hover">
-        <button class="w3-button"><i class="fa fa-square"></i> Components <i class="fa fa-caret-down"></i></button>
+        <button class="w3-button"><i class="fa fa-square"></i> Components</i></button>
         <div class="w3-dropdown-content w3-bar-block w3-card-4">
             <a href="/secret/component/view" class="w3-bar-item w3-button"><i class="fa fa-th-list"></i> View Components</a>
             <hr class="nav-hr">
-            <a href="/secret/component/create" class="w3-bar-item w3-button"><i class="fa fa-plus"></i> Create Components</a>
+            <div class="w3-dropdownsub-hover">
+                <button class="w3-button"><i class="fa fa-plus"></i> Create Components</i></button>
+                <div class="w3-dropdownsub-content w3-sub w3-bar-block w3-card-4">
+                    <a href="/secret/component/create/fabric" class="w3-bar-item w3-button"><i class="fa fa-square-o"></i> Fabric</a>
+                    <a href="/secret/component/create/pattern" class="w3-bar-item w3-button"><i class="fa fa-square-o"></i> Pattern</a>
+                </div>
+            </div>
         </div>
     </div>
     {{/if}}
@@ -34,7 +40,7 @@
         <a href="/login" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-in"></i> Login</a>
         {{/if}}
     {{/if}}
-    <a href="{{root}}{{source}}/about" class="w3-bar-item w3-right w3-button"><i class="fa fa-info"></i> About '{{source}}'</a>
+    <a href="{{source}}about" class="w3-bar-item w3-right w3-button"><i class="fa fa-info"></i> About</a>
     </div>
 </div>
 <div id="header-spc"></div>

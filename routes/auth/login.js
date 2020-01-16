@@ -7,20 +7,28 @@ const User = require('../../models/user');
 const bcrypt         = require("bcryptjs");
 const bcryptSalt     = 10;
 
-let data = { router: "login", root:"/", status: { login: true } };
+let data = { router: "login", status: { login: true } };
+
+loginController.get('/about', (req, res, next) => {
+    data.source = "/login/";
+    data.status.about = true;
+    res.render('auth/login.hbs', data );
+});
 
 loginController.get('/', (req, res, next) => {
-    data.source = "auth/login";
+    data.source = "/login/";
+    delete data.status.about;
     res.render( 'auth/login.hbs', data );
 });
 
 loginController.post("/", (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    delete data.status.about;
 
     if (email === "" || password === "") {
         data.errorMessage = "EMail or password not correct";
-        data.source = "auth/login";
+        data.source = "/login/";
         res.render("auth/login.hbs", data );
         return;
     }
@@ -29,12 +37,12 @@ loginController.post("/", (req, res, next) => {
         .then(( user ) => {
             if( user === null ) {
                 data.errorMessage = "EMail or password not correct";
-                data.source = "auth/login";
+                data.source = "/login/";
                 res.render("auth/login.hbs", data );
             } else {
                 if( ! bcrypt.compareSync(password, user.password) ){
                     data.errorMessage = "EMail or password not correct";
-                    data.source = "auth/login";
+                    data.source = "/login/";
                     res.render("auth/login.hbs", data );
                 } else {
                     // Save the login in the session!
@@ -42,7 +50,7 @@ loginController.post("/", (req, res, next) => {
                     data.status.logged = true;
                     delete data.status.login;
                     data.name = user.fullName;
-                    data.source = "";
+                    data.source = "/";
                     res.render("index.hbs", data );
                 } 
             }

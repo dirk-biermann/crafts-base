@@ -2,7 +2,7 @@ const express = require('express');
 const signupController = express.Router();
 const User = require('../../models/user');
 
-let data = { router: "signup", root:"/", status: {} };
+let data = { router: "signup", status: {} };
 
 // BCrypt to encrypt passwords
 const bcrypt         = require("bcryptjs");
@@ -17,8 +17,15 @@ signupController.use((req, res, next) => {
     next();                      
 });                               
 
+signupController.get('/about', (req, res, next) => {
+    data.source = "/signup/";
+    data.status.about = true;
+    res.render('auth/signup.hbs', data );
+});
+
 signupController.get('/', (req, res, next) => {
-    data.source = "signup";
+    data.source = "/signup/";
+    delete data.status.about;
     res.render( 'auth/signup.hbs', data );
 });
 
@@ -27,9 +34,11 @@ signupController.post("/", (req, res, next) => {
     const fullName = req.body.fullName;
     const password = req.body.password;
 
+    delete data.status.about;
+
     if (fullName === "" || password === "" || email === "" ) {
         data.errorMessage = "Indicate a username, email and password to sign up";
-        data.source = "auth/signup";
+        data.source = "/signup/";
         res.render("auth/signup.hbs", data );
         return;
     }
@@ -41,7 +50,7 @@ signupController.post("/", (req, res, next) => {
         .then(( user ) => {
             if( user !== null ) {
                 data.errorMessage = "Entered EMail already exist";
-                data.source = "auth/signup";
+                data.source = "/signup/";
                 res.render("auth/signup.hbs", data, );
                 return;
             }
