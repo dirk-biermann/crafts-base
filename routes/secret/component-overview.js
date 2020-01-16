@@ -9,19 +9,19 @@ createComponentController.use((req, res, next) => {
         data.name = req.session.currentUser.fullName;
         next();
     } else {
-        data.source = "index";
+        data.source = "";
         res.render("index.hbs", data );
     }                             
 });    
 
 createComponentController.get('/about', (req, res, next) => {
-    data.source = "secret/component";
+    data.source = "/secret/component";
     data.status.about = true;
     res.render('secret/component-overview.hbs', data );
 });
 
 createComponentController.get('/', (req, res, next) => {
-  data.source = "secret/component";
+  data.source = "/secret/component";
   delete data.status.about;
   res.render('secret/component-overview.hbs', data );
 });
