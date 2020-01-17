@@ -30,14 +30,13 @@ signupController.get('/', (req, res, next) => {
 });
 
 signupController.post("/", (req, res, next) => {
-    const email = req.body.email;
-    const fullName = req.body.fullName;
+    const username = req.body.username;
     const password = req.body.password;
 
     delete data.status.about;
 
-    if (fullName === "" || password === "" || email === "" ) {
-        data.errorMessage = "Indicate a username, email and password to sign up";
+    if (username === "" || password === "" ) {
+        data.errorMessage = "Indicate username and password to sign up";
         data.source = "/signup/";
         res.render("auth/signup.hbs", data );
         return;
@@ -46,17 +45,16 @@ signupController.post("/", (req, res, next) => {
     const salt     = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    User.findOne({"email": email})    
+    User.findOne({"username": username})    
         .then(( user ) => {
             if( user !== null ) {
-                data.errorMessage = "Entered EMail already exist";
+                data.errorMessage = "Entered username already exist";
                 data.source = "/signup/";
                 res.render("auth/signup.hbs", data, );
                 return;
             }
             User.create({
-                fullName,
-                email,
+                username,
                 password: hashPass
             })
             .then(() => {

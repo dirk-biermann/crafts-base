@@ -1,7 +1,7 @@
-<div class="header-fix 3d-shadow-bottom">
+<div class="header-fix box-shadow-bottom">
     <div class="w3-bar w3-indigo">
         <div class="w3-bar-item padding-0"><img id="express-logo" src="/images/express-logo.png" alt="express logo"></div>
-        <div class="w3-bar-item"><h1>{{title}} - {{subtitle}}</h1></div>
+        <div class="w3-bar-item"><h1>{{title}} &mdash; <span class="w3-xlarge">{{subtitle}}</span></h1></div>
     </div>
     <div class="w3-bar w3-blue">
     <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
@@ -32,11 +32,11 @@
     {{/if}}
 
     {{#if status.logged }}
-        <a href="/logout" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-in"></i> Logout</a>
+        <a href="/logout" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-out"></i> Logout</a>
     {{else}}
         {{#if status.login }}
         {{else}}
-        <a href="/signup" class="w3-bar-item w3-button"><i class="fa fa-address-card-o"></i> Sign Up</a>
+        <a href="/signup" class="w3-bar-item w3-button"><i class="fa fa-user-plus"></i> Sign Up</a>
         <a href="/login" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-in"></i> Login</a>
         {{/if}}
     {{/if}}
