@@ -16,7 +16,7 @@ loginController.get('/about', (req, res, next) => {
 });
 
 loginController.get('/', (req, res, next) => {
-    data.source = "/login/";
+    data.source = "/login/about";
     delete data.status.about;
     res.render( 'auth/login.hbs', data );
 });

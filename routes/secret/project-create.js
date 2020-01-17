@@ -9,7 +9,7 @@ createProjectController.use((req, res, next) => {
         data.name = req.session.currentUser.fullName;
         next();
     } else {
-        data.source = "/";
+        data.source = "/about";
         res.render("index.hbs", data );
     }                             
 });    
@@ -21,7 +21,7 @@ createProjectController.get('/about', (req, res, next) => {
 });
 
 createProjectController.get('/', (req, res, next) => {
-  data.source = "/secret/project/create/";
+  data.source = "/secret/project/create/about";
   delete data.status.about;
   res.render('secret/project-create.hbs', data );
 });

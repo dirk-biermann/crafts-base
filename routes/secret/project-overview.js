@@ -11,7 +11,7 @@ createProjectController.use((req, res, next) => {
         data.name = req.session.currentUser.fullName;
         next();
     } else {
-        data.source = "/";
+        data.source = "/about";
         res.render("index.hbs", data );
     }                             
 });    
@@ -23,7 +23,7 @@ createProjectController.get('/about', (req, res, next) => {
 });
 
 createProjectController.get('/', (req, res, next) => {
-  data.source = "/secret/project/view/";
+  data.source = "/secret/project/view/about";
   delete data.status.about;
 
   Project.find(function (err, projects) {

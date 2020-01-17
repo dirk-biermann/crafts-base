@@ -24,7 +24,7 @@ signupController.get('/about', (req, res, next) => {
 });
 
 signupController.get('/', (req, res, next) => {
-    data.source = "/signup/";
+    data.source = "/signup/about";
     delete data.status.about;
     res.render( 'auth/signup.hbs', data );
 });
@@ -37,7 +37,7 @@ signupController.post("/", (req, res, next) => {
 
     if (username === "" || password === "" ) {
         data.errorMessage = "Indicate username and password to sign up";
-        data.source = "/signup/";
+        data.source = "/signup/about";
         res.render("auth/signup.hbs", data );
         return;
     }
@@ -49,7 +49,7 @@ signupController.post("/", (req, res, next) => {
         .then(( user ) => {
             if( user !== null ) {
                 data.errorMessage = "Entered username already exist";
-                data.source = "/signup/";
+                data.source = "/signup/about";
                 res.render("auth/signup.hbs", data, );
                 return;
             }
