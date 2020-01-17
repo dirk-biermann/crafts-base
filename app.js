@@ -14,8 +14,9 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 const dbName = 'crafts-base';
+
 mongoose
-  .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/crafts-base', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
