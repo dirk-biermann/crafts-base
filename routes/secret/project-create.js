@@ -1,7 +1,7 @@
 const express = require('express');
 const createProjectController  = express.Router();
 
-const data = { router: "project_detail", status: {} };
+const data = { router: "project_create", status: {} };
 
 createProjectController.use((req, res, next) => {
     if (req.session.currentUser) {

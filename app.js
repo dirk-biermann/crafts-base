@@ -15,7 +15,7 @@ const MongoStore = require("connect-mongo")(session);
 
 const dbName = 'crafts-base';
 mongoose
-  .connect(`mongodb://localhost/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
+  .connect(process.env.MONGODB_URI || `mongodb://localhost/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -121,6 +121,9 @@ app.use('/secret/project/edit', project_edit);
 // COMPONENT 
 const component_overview = require('./routes/secret/component-overview.js');
 app.use('/secret/component/view', component_overview);
+
+const component_create = require('./routes/secret/component-create.js');
+app.use('/secret/component/create', component_create);
 
 /*
 const create_room = require('./routes/secret/create.js');

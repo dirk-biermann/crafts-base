@@ -9,8 +9,6 @@ const projectSchema = new Schema({
   components:     { type: Schema.Types.ObjectId, refPath: 'onModel'},
   onModel:        { type: String, enum: ['Pattern', 'Fabric']},
   status:         { type: String, enum: ['New', 'Planned','Completed']}
-  
-
 },{
   timestamps: {
     createdAt: "created_at",
