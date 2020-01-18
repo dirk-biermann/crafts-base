@@ -1,47 +1,8 @@
-<div class="header-fix box-shadow-bottom">
-    <div class="w3-bar w3-indigo">
-        <div class="w3-bar-item padding-0"><img id="express-logo" src="/images/express-logo.png" alt="express logo"></div>
-        <div class="w3-bar-item"><h1>{{title}} &mdash; <span class="w3-xlarge">{{subtitle}}</span></h1></div>
-    </div>
-    <div class="w3-bar w3-blue">
-    <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
-
-    {{#if status.logged }}
-    <div class="w3-dropdown-hover">
-        <button class="w3-button"><i class="fa fa-th-large"></i> Projects</button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="/secret/project/view" class="w3-bar-item w3-button"><i class="fa fa-th-list"></i> View Projects</a>
-            <hr class="nav-hr">
-            <a href="/secret/project/create" class="w3-bar-item w3-button"><i class="fa fa-plus"></i> Create Project</a>
-        </div>
-    </div>
-    <div class="w3-dropdown-hover">
-        <button class="w3-button"><i class="fa fa-square"></i> Components</i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="/secret/component/view" class="w3-bar-item w3-button"><i class="fa fa-th-list"></i> View Components</a>
-            <hr class="nav-hr">
-            <div class="w3-dropdownsub-hover">
-                <button class="w3-button"><i class="fa fa-plus"></i> Create Components</i></button>
-                <div class="w3-dropdownsub-content w3-sub w3-bar-block w3-card-4">
-                    <a href="/secret/component/create/fabric" class="w3-bar-item w3-button"><i class="fa fa-square-o"></i> Fabric</a>
-                    <a href="/secret/component/create/pattern" class="w3-bar-item w3-button"><i class="fa fa-square-o"></i> Pattern</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{/if}}
-
-    {{#if status.logged }}
-        <a href="/logout" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-out"></i> Logout</a>
-    {{else}}
-        {{#if status.login }}
-        {{else}}
-        <a href="/signup" class="w3-bar-item w3-button"><i class="fa fa-user-plus"></i> Sign Up</a>
-        <a href="/login" class="w3-bar-item w3-button w3-right w3-light-blue"><i class="fa fa-sign-in"></i> Login</a>
-        {{/if}}
-    {{/if}}
-    <a href="{{source}}" class="w3-bar-item w3-right w3-button"><i class="fa fa-info"></i> About</a>
-    </div>
-</div>
-<div id="header-spc"></div>
-
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">{{title}}</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">{{title}}</span><br>
+    <span class="w3-xlarge">{{desc}}</span>
+    <p><a href="#start" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Start today</a></p>
+  </div> 
+</header>

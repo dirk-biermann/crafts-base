@@ -8,7 +8,7 @@ mainController.use((req, res, next) => {
 
     if (req.session.currentUser) {
         data.status.logged = true;
-        data.name = req.session.currentUser.fullName;
+        data.name = req.session.currentUser.username;
     }
     next();                      
 });                               
