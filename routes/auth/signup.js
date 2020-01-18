@@ -17,24 +17,14 @@ signupController.use((req, res, next) => {
     next();                      
 });                               
 
-signupController.get('/about', (req, res, next) => {
-    data.source = "/signup/";
-    data.status.about = true;
-    res.render('auth/signup.hbs', data );
-});
-
 signupController.get('/', (req, res, next) => {
     data.source = "/signup/";
-    delete data.status.about;
     res.render( 'auth/signup.hbs', data );
 });
 
 signupController.post("/", (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
-
-    delete data.status.about;
-
     if (username === "" || password === "" ) {
         data.errorMessage = "Indicate username and password to sign up";
         data.source = "/signup/";

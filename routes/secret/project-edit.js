@@ -6,7 +6,7 @@ const data = { router: "project_edit", status: {} };
 createProjectController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
-        data.name = req.session.currentUser.fullName;
+        data.name = req.session.currentUser.username;
         next();
     } else {
         data.source = "/";
@@ -14,15 +14,8 @@ createProjectController.use((req, res, next) => {
     }                             
 });    
 
-createProjectController.get('/about', (req, res, next) => {
-    data.source = "/secret/project/edit/";
-    data.status.about = true;
-    res.render('secret/project-edit.hbs', data );
-});
-
-createProjectController.get('/', (req, res, next) => {
+createProjectController.get('/:id', (req, res, next) => {
   data.source = "/secret/project/edit/";
-  delete data.status.about;
   res.render('secret/project-edit.hbs', data );
 });
 

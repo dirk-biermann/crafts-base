@@ -89,10 +89,10 @@ hbs.registerHelper({
 
 // default value for title local
 app.locals.title = 'Crafts Base';
-app.locals.subtitle = 'project administration';
+app.locals.subtitle = 'handcraft project management & administration';
+app.locals.desc="The platform for your handcraft projects and management of all accessories you need!"
 app.locals.version = '0.01';
 app.locals.build = '0001';
-
 // --------------------------------------------------------
 
 // routes AUTH views --------------------------------------

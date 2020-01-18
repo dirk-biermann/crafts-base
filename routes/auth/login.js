@@ -9,12 +9,6 @@ const bcryptSalt     = 10;
 
 let data = { router: "login", status: { login: true } };
 
-loginController.get('/about', (req, res, next) => {
-    data.source = "/login/";
-    data.status.about = true;
-    res.render('auth/login.hbs', data );
-});
-
 loginController.get('/', (req, res, next) => {
     data.source = "/login/";
     delete data.status.about;
