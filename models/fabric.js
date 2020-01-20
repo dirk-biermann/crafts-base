@@ -7,7 +7,7 @@ const fabricSchema = new Schema ({
   description:  { type: String, required: false},
   length:       { type: Number, required: [true, 'Add the length of the fabric']},
   width:        { type: Number, required: [true, 'Add the width of the fabric']},
-  imageUrl:     String,
+  imageUrl:     { type: String, default: "/images/def-fabric.png"},
   material:     String,
   color:        String,
   pattern:      Boolean,

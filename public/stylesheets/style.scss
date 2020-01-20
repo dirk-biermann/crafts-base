@@ -142,3 +142,14 @@ body {
 .w3-flex-item-content-r {
   flex-direction: row;
 }
+
+.comp-img {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+.comp-img img {
+  width: auto;
+  height: 100%;
+}
+
