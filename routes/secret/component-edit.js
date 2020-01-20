@@ -24,8 +24,9 @@ createComponentController.get('/:type/:id', (req, res, next) => {
 
     if(type == "pattern") {
         Pattern.findById(id)
-            .then((data) => { 
-                console.log("Inside pattern edit " , data)
+            .then((pattern) => { 
+                data.pattern = pattern;
+                console.log(data);
                 res.render('secret/component-edit-pattern.hbs', data );
             })
             .catch(err => {
@@ -35,7 +36,13 @@ createComponentController.get('/:type/:id', (req, res, next) => {
 
     if(type == "fabric") {
         Fabric.findById(id)
-            .then((data) => {
+            .then((fabric) => {
+                data.fabric = fabric;
+                if(fabric.pattern === true){
+                    data.fabric.hasPattern = "checked";
+                }else{
+                    data.fabric.noPattern = "checked";
+                }
                 console.log("Inside fabric edit " , data)
                 res.render('secret/component-edit-fabric.hbs', data )
             })
@@ -55,7 +62,7 @@ createComponentController.post('/:type/:id', (req, res, next) => {
         const {title, description, typeOfClothes, instructions, imageUrl} = req.body;
         Pattern.findByIdAndUpdate(id, {title, description, typeOfClothes, instructions, imageUrl})
             .then(() => { 
-                res.render('secret/component-overview.hbs', data );
+                res.redirect('/secret/component/view/');
             })
             .catch(err => {
                 next(err);
@@ -66,7 +73,7 @@ createComponentController.post('/:type/:id', (req, res, next) => {
         const {title, description, length, width, imageUrl, material, color, pattern} = req.body;
         Fabric.findByIdAndUpdate(id, {title, description, length, width, imageUrl, material, color, pattern})
             .then(() => {
-                res.render('secret/component-overview.hbs', data )
+                res.redirect('/secret/component/view/');
             })
             .catch(err => {
                 next(err);
