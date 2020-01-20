@@ -108,7 +108,6 @@ body {
   display: flex; 
   width: 96%;
   margin: 0 1em 1em 0;
-  border: red solid 1px;
 }
 .w3-flex-item {
   width: 100%;
@@ -153,3 +152,4 @@ body {
   height: 100%;
 }
 
+.w3-ta-3 { height: 4rem; min-height: 4rem; max-height: 16rem; min-width: 100%; max-width: 100%; }

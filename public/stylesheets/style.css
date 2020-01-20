@@ -114,8 +114,7 @@ body {
 .w3-flex-item, .w3-flex-item-p, .w3-flex-item-c {
   display: flex;
   width: 96%;
-  margin: 0 1em 1em 0;
-  border: red solid 1px; }
+  margin: 0 1em 1em 0; }
 
 .w3-flex-item {
   width: 100%; }
@@ -151,5 +150,12 @@ body {
 .comp-img img {
   width: auto;
   height: 100%; }
+
+.w3-ta-3 {
+  height: 4rem;
+  min-height: 4rem;
+  max-height: 16rem;
+  min-width: 100%;
+  max-width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,11 +1,11 @@
 const express = require('express');
-const createProjectController  = express.Router();
+const detailProjectController  = express.Router();
 
 const data = { router: "project_detail", status: {} };
 
 let Project = require('../../models/project');
 
-createProjectController.use((req, res, next) => {
+detailProjectController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
         data.name = req.session.currentUser.username;
@@ -16,9 +16,9 @@ createProjectController.use((req, res, next) => {
     }                             
 });    
 
-createProjectController.get('/:pId', (req, res, next) => {
+detailProjectController.get('/:pId', (req, res, next) => {
   let projectId = req.params.pId;
-  console.log( "PID:", projectId, req.param.pId)
+  console.log( "PRJ-DETAIL PID:", projectId, req.param.pId)
   Project.findById(projectId)
     .then((theProject) => {
       data.source = `/secret/project/detail/${theProject._id}`;
@@ -31,4 +31,4 @@ createProjectController.get('/:pId', (req, res, next) => {
     })
 });
 
-module.exports = createProjectController;
+module.exports = detailProjectController;

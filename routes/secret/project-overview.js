@@ -1,11 +1,11 @@
 const express = require('express');
-const createProjectController  = express.Router();
+const viewProjectController  = express.Router();
 
 const data = { router: "project_overview", status: {} };
 
 let Project = require('../../models/project');
 
-createProjectController.use((req, res, next) => {
+viewProjectController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
         data.name = req.session.currentUser.username;
@@ -16,7 +16,7 @@ createProjectController.use((req, res, next) => {
     }                             
 });    
 
-createProjectController.get('/', (req, res, next) => {
+viewProjectController.get('/', (req, res, next) => {
   data.source = "/secret/project/view/";
   Project.find(function (err, projects) {
       if (err) {
@@ -29,4 +29,4 @@ createProjectController.get('/', (req, res, next) => {
 
 });
 
-module.exports = createProjectController;
+module.exports = viewProjectController;
