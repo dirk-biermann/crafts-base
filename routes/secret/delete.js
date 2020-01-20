@@ -1,7 +1,8 @@
 const express = require('express');
 const createComponentController  = express.Router();
-const Fabric = require("../../models/fabric")
-const Pattern = require("../../models/pattern")
+const Fabric = require("../../models/fabric");
+const Pattern = require("../../models/pattern");
+const Project = require("../../models/project");
 
 const data = { router: "object_delete", status: {} };
 
