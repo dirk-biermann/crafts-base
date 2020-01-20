@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const fabricSchema = new Schema ({
-  name:         { type: String, required: [true, 'Enter a fabric name']},
+  type:         { type: String, default: "fabric"},
+  title:        { type: String, required: [true, 'Enter a fabric name']},
   description:  { type: String, required: false},
   length:       { type: Number, required: [true, 'Add the length of the fabric']},
   width:        { type: Number, required: [true, 'Add the width of the fabric']},

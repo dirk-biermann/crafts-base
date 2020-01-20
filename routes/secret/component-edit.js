@@ -1,5 +1,7 @@
 const express = require('express');
 const createComponentController  = express.Router();
+const Fabric = require("../../models/fabric")
+const Pattern = require("../../models/pattern")
 
 const data = { router: "component_edit", status: {} };
 
@@ -12,14 +14,66 @@ createComponentController.use((req, res, next) => {
         data.source = "/";
         res.render("index.hbs", data );
     }                             
+});    
+
+createComponentController.get('/:type/:id', (req, res, next) => {
+    const type = req.params.type;
+    const id = req.params.id;
+    data.source = `/secret/component/edit/${type}/${id}`;
+    
+
+    if(type == "pattern") {
+        Pattern.findById(id)
+            .then((data) => { 
+                console.log("Inside pattern edit " , data)
+                res.render('secret/component-edit-pattern.hbs', data );
+            })
+            .catch(err => {
+                next(err);
+            })
+    };
+
+    if(type == "fabric") {
+        Fabric.findById(id)
+            .then((data) => {
+                console.log("Inside fabric edit " , data)
+                res.render('secret/component-edit-fabric.hbs', data )
+            })
+            .catch(err => {
+                next(err);
+            })
+    } 
 });
 
-createComponentController.get('/', (req, res, next) => {
-    data.source = "/secret/component/";
+createComponentController.post('/:type/:id', (req, res, next) => {
+    const type = req.params.type;
+    const id = req.params.id;
+    data.source = `/secret/component/edit/${type}/${id}`;
     
-    data.pattern = [{ name: "pattern", typeOfClothes: "Shirt" },{ name: "pattern2", typeOfClothes: "Skirt" },{ name: "pattern3", typeOfClothes: "Trousers" }];
-    res.render('secret/component-edit.hbs', data );
-  });
+
+    if(type == "pattern") {
+        const {title, description, typeOfClothes, instructions, imageUrl} = req.body;
+        Pattern.findByIdAndUpdate(id, {title, description, typeOfClothes, instructions, imageUrl})
+            .then(() => { 
+                res.render('secret/component-overview.hbs', data );
+            })
+            .catch(err => {
+                next(err);
+            })
+    };
+
+    if(type == "fabric") {
+        const {title, description, length, width, imageUrl, material, color, pattern} = req.body;
+        Fabric.findByIdAndUpdate(id, {title, description, length, width, imageUrl, material, color, pattern})
+            .then(() => {
+                res.render('secret/component-overview.hbs', data )
+            })
+            .catch(err => {
+                next(err);
+            })
+    }
+    
+});
 
 
 module.exports = createComponentController;
