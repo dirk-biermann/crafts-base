@@ -1,5 +1,7 @@
 const express = require('express');
 const createComponentController  = express.Router();
+const Fabric = require("../../models/fabric")
+const Pattern = require("../../models/pattern")
 
 const data = { router: "component_detail", status: {} };
 
@@ -14,11 +16,38 @@ createComponentController.use((req, res, next) => {
     }                             
 });
 
-createComponentController.get('/', (req, res, next) => {
-    data.source = "/secret/component/";
-    data.pattern = [{ title: "pattern", typeOfClothes: "Shirt" },{ title: "pattern2", typeOfClothes: "Skirt" },{ title: "pattern3", typeOfClothes: "Trousers" }];
-    res.render('secret/component-detail.hbs', data );
-  });
+createComponentController.get('/:type/:id', (req, res, next) => {
+    const type = req.params.type;
+    const id = req.params.id;
+    data.source = `/secret/component/detail/${type}/${id}`;
+    if(type == "pattern") {
+        Pattern.findById(id)
+            .then((pattern) => { 
+                data.pattern = pattern;
+                console.log(data);
+                res.render('secret/component-detail-pattern.hbs', data );
+            })
+            .catch(err => {
+                next(err);
+            })
+    };
+    if(type == "fabric") {
+        Fabric.findById(id)
+            .then((fabric) => {
+                data.fabric = fabric;
+                if(fabric.pattern === true){
+                    data.fabric.hasPattern = "checked";
+                }else{
+                    data.fabric.noPattern = "checked";
+                }
+                console.log("Inside fabric edit " , data)
+                res.render('secret/component-detail-fabric.hbs', data )
+            })
+            .catch(err => {
+                next(err);
+            })
+    }; 
+});
 
-
-module.exports = createComponentController;
+  
+  module.exports = createComponentController;
