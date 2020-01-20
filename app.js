@@ -106,6 +106,10 @@ const logout = require('./routes/auth/logout.js');
 app.use('/logout', logout);
 
 // routes RESTRICTED views --------------------------------
+//GENERAL
+const object_delete = require('./routes/secret/delete.js');
+app.use('/secret/delete', object_delete);
+
 // PROJECT 
 const project_overview = require('./routes/secret/project-overview.js');
 app.use('/secret/project/view', project_overview);
@@ -132,8 +136,7 @@ app.use('/secret/component/edit', component_edit);
 const component_create = require('./routes/secret/component-create.js');
 app.use('/secret/component/create', component_create);
 
-const component_delete = require('./routes/secret/component-delete.js');
-app.use('/secret/component/delete', component_delete);
+
 
 /*
 const create_room = require('./routes/secret/create.js');

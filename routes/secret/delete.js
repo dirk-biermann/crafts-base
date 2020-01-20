@@ -3,7 +3,7 @@ const createComponentController  = express.Router();
 const Fabric = require("../../models/fabric")
 const Pattern = require("../../models/pattern")
 
-const data = { router: "component_delete", status: {} };
+const data = { router: "object_delete", status: {} };
 
 createComponentController.use((req, res, next) => {
     if (req.session.currentUser) {
@@ -19,13 +19,13 @@ createComponentController.use((req, res, next) => {
 createComponentController.get('/:type/:id', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
-    data.source = `/secret/component/delete/${type}/${id}`;
+    data.source = `/secret/delete/${type}/${id}`;
     if(type == "pattern") {
         Pattern.findById(id)
             .then((pattern) => { 
-                data.componend = pattern;
+                data.object = pattern;
                 console.log(data);
-                res.render('secret/component-delete.hbs', data );
+                res.render('secret/delete.hbs', data );
             })
             .catch(err => {
                 next(err);
@@ -34,9 +34,20 @@ createComponentController.get('/:type/:id', (req, res, next) => {
     if(type == "fabric") {
         Fabric.findById(id)
             .then((fabric) => {
-                data.componend = fabric;
+                data.object = fabric;
                 console.log("Inside fabric delete " , data)
-                res.render('secret/component-delete.hbs', data )
+                res.render('secret/delete.hbs', data )
+            })
+            .catch(err => {
+                next(err);
+            })
+    }; 
+    if(type == "project") {
+        Project.findById(id)
+            .then((project) => {
+                data.object = project;
+                console.log("Inside project delete " , data)
+                res.render('secret/delete.hbs', data )
             })
             .catch(err => {
                 next(err);
@@ -58,11 +69,19 @@ createComponentController.post('/:type/:id', (req, res, next) => {
                 next(err);
             })
     };
-
     if(type == "fabric") {
         Fabric.findByIdAndRemove(id)
             .then(() => {
                 res.redirect('/secret/component/view/');
+            })
+            .catch(err => {
+                next(err);
+            })
+    };
+    if(type == "project") {
+        Project.findByIdAndRemove(id)
+            .then(() => {
+                res.redirect('/secret/project/view/');
             })
             .catch(err => {
                 next(err);

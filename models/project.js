@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const projectSchema = new Schema({
+  type:           { type: String, default: "project"},           
   name:           { type: String, required: [true, 'Enter a pattern name']},
   owner:          { type: Schema.Types.ObjectId, ref: 'User'},
   description:    { type: String, required: false},

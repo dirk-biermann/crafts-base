@@ -2,10 +2,10 @@
   <div class="w3-flex-item-content">
     <div class="w3-margin-bottom">
       <div class="comp-img">
-        <img src="{{this.imageUrl}}" alt="{{this.title}}">
+        <img src="{{this.imageUrl}}" alt="{{this.name}}">
       </div>
       <div class="w3-center">
-        <p>{{this.title}}</p>
+        <p>{{this.name}}</p>
         {{#if this.typeOfClothes}}
         <p>{{this.typeOfClothes}}</p>
         {{else}}
@@ -16,7 +16,7 @@
     <div class="w3-center">
       <a href="/secret/component/detail/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-eye"></i> View</a>
       <a href="/secret/component/edit/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-pencil"></i> Edit</a>
-      <form action="/secret/component/delete/{{this.type}}/{{this._id}}" method="get"><button type="submit"class="w3-button w3-wide w3-red w3-small w3-margin-bottom"><i class="fa fa-trash"></i>Delete</button></form>
+      <form action="/secret/delete/{{this.type}}/{{this._id}}" method="get"><button type="submit" class="w3-button w3-wide w3-red w3-small w3-margin-bottom"><i class="fa fa-trash"></i>Delete</button></form>
     </div>
   </div>
 </div>

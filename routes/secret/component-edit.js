@@ -59,8 +59,8 @@ createComponentController.post('/:type/:id', (req, res, next) => {
     
 
     if(type == "pattern") {
-        const {title, description, typeOfClothes, instructions, imageUrl} = req.body;
-        Pattern.findByIdAndUpdate(id, {title, description, typeOfClothes, instructions, imageUrl})
+        const {name, description, typeOfClothes, instructions, imageUrl} = req.body;
+        Pattern.findByIdAndUpdate(id, {name, description, typeOfClothes, instructions, imageUrl})
             .then(() => { 
                 res.redirect('/secret/component/view/');
             })
@@ -70,8 +70,8 @@ createComponentController.post('/:type/:id', (req, res, next) => {
     };
 
     if(type == "fabric") {
-        const {title, description, length, width, imageUrl, material, color, pattern} = req.body;
-        Fabric.findByIdAndUpdate(id, {title, description, length, width, imageUrl, material, color, pattern})
+        const {name, description, length, width, imageUrl, material, color, pattern} = req.body;
+        Fabric.findByIdAndUpdate(id, {name, description, length, width, imageUrl, material, color, pattern})
             .then(() => {
                 res.redirect('/secret/component/view/');
             })
