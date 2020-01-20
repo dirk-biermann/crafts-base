@@ -24,6 +24,7 @@ createComponentController.get("/", async (req, res, next) => {
     const allPatterns = await Pattern.find();
     data.fabric = allFabrics;
     data.pattern = allPatterns;
+    console.log( "Component Overview", data );
     res.render("secret/component-overview.hbs", data);
   } catch (err) {
     next(err);
