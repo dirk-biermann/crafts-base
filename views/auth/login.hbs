@@ -1,27 +1,33 @@
+<div id="start" class="header-spc"></div>
 <div class="w3-container w3-margin">
   <div class="w3-display-container">
     <div class="w3-display-topmiddle w3-card w3-white">
       <div class="small-caps w3-gray w3-xlarge w3-padding">Login User</div>
-      <div class="w3-padding">
-        <form id="form" action="/login" method="POST">
-            <label for="email">EMail</label><br>
-            <input type="text" name="email"
-              placeholder="Your EMail" autofocus><br><br>
+      <div class="w3-padding w3-row">
+        <div class="w3-col l8">
+          <form id="form" action="/login" method="POST">
+              <label for="username">Name</label><br>
+              <input type="text" name="username"
+                placeholder="Your Name" autofocus><br><br>
 
-            <label for="password">Password</label><br>
-            <input type="password" name="password"
-              placeholder="********"><br><br>
+              <label for="password">Password</label><br>
+              <input type="password" name="password"
+                placeholder="********"><br><br>
 
-            <button type="submit">Login User</button>
-        </form>
-        <div>&nbsp;</div>
-        {{#if errorMessage}}
-        <div class="w3-card w3-red">
-          <div class="w3-container w3-center">
-            <p>{{errorMessage}}</p>
+              <button type="submit">Login User</button>
+          </form>
+          <div>&nbsp;</div>
+          {{#if errorMessage}}
+          <div class="w3-card w3-red">
+            <div class="w3-container w3-center">
+              <p>{{errorMessage}}</p>
+            </div>
           </div>
+          {{/if}}
         </div>
-        {{/if}}
+        <div class="w3-col l4" style="padding-right: 30px;">
+          <i class="fa fa-sign-in fa-fw" style="font-size: 100px;"></i>&nbsp;
+        </div>
       </div>
     </div>
   </div>

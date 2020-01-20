@@ -8,23 +8,20 @@ mainController.use((req, res, next) => {
 
     if (req.session.currentUser) {
         data.status.logged = true;
-        data.name = req.session.currentUser.fullName;
+        data.name = req.session.currentUser.username;
     }
-    console.log( "USER-CHECK", JSON.stringify( data ) );
     next();                      
 });                               
 
 mainController.get('/about', (req, res, next) => {
     data.source = "/";
     data.status.about = true;
-    console.log( "ABOUT", JSON.stringify( data ) );
     res.render('index.hbs', data );
 });
 
 mainController.get('/', (req, res, next) => {
-    data.source = "/";
+    data.source = "/about";
     delete data.status.about;
-    console.log( "NORM", JSON.stringify( data ) );
     res.render('index.hbs', data );
 });
 

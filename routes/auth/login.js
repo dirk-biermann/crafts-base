@@ -9,12 +9,6 @@ const bcryptSalt     = 10;
 
 let data = { router: "login", status: { login: true } };
 
-loginController.get('/about', (req, res, next) => {
-    data.source = "/login/";
-    data.status.about = true;
-    res.render('auth/login.hbs', data );
-});
-
 loginController.get('/', (req, res, next) => {
     data.source = "/login/";
     delete data.status.about;
@@ -22,26 +16,26 @@ loginController.get('/', (req, res, next) => {
 });
 
 loginController.post("/", (req, res, next) => {
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
     delete data.status.about;
 
-    if (email === "" || password === "") {
-        data.errorMessage = "EMail or password not correct";
+    if (username === "" || password === "") {
+        data.errorMessage = "username or password not correct";
         data.source = "/login/";
         res.render("auth/login.hbs", data );
         return;
     }
 
-    User.findOne({"email": email})    
+    User.findOne({"username": username})    
         .then(( user ) => {
             if( user === null ) {
-                data.errorMessage = "EMail or password not correct";
+                data.errorMessage = "username or password not correct";
                 data.source = "/login/";
                 res.render("auth/login.hbs", data );
             } else {
                 if( ! bcrypt.compareSync(password, user.password) ){
-                    data.errorMessage = "EMail or password not correct";
+                    data.errorMessage = "username or password not correct";
                     data.source = "/login/";
                     res.render("auth/login.hbs", data );
                 } else {
@@ -49,7 +43,7 @@ loginController.post("/", (req, res, next) => {
                     req.session.currentUser = user;
                     data.status.logged = true;
                     delete data.status.login;
-                    data.name = user.fullName;
+                    data.name = user.username;
                     data.source = "/";
                     res.render("index.hbs", data );
                 } 

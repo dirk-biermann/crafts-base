@@ -2,13 +2,8 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
-  email: String,
+  username: String,
   password: String,
-  fullName: String,
-  // slack login - optional
-  slackID: String,
-  // google login - optional
-  googleID: String
 }, {
   timestamps: true
 });

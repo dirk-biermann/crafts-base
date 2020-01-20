@@ -11,26 +11,19 @@ createComponentController.use((req, res, next) => {
         data.name = req.session.currentUser.fullName;
         next();
     } else {
-        data.source = "/about";
+        data.source = "/";
         res.render("index.hbs", data );
     }                             
 });    
 
-createComponentController.get('/about', (req, res, next) => {
-    data.source = "/secret/component/view/";
-    data.status.about = true;
-    res.render('secret/component-overview.hbs', data );
-});
 
 createComponentController.get("/", async (req, res, next) => {
   try {
-    data.source = "/secret/component/view/about";
-    delete data.status.about;
+    data.source = "/secret/component/view/";
     const allFabrics = await Fabric.find();
     const allPatterns = await Pattern.find();
     data.fabric = allFabrics;
     data.pattern = allPatterns;
-    console.log(data);
     res.render("secret/component-overview.hbs", data);
   } catch (err) {
     next(err);

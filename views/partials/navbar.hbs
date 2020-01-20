@@ -1,0 +1,85 @@
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-indigo w3-card" id="myNavbar">
+      <img class="w3-left" style="padding-top:2px;" id="exp-logo" src="/images/express-logo.png" alt="piranha logo">
+      <a href="/" class="w3-left w3-bar-item w3-button w3-wide">{{title}}</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+      {{#if status.logged }}
+        <div class="w3-dropdown-hover">
+          <div class="w3-button padding-btn"><i class="fa fa-th-large"></i> PROJECTS</div>
+          <div class="w3-dropdown-content w3-bar-block w3-card">
+            <a href="/secret/project/view" class="w3-bar-item w3-button"><i class="fa fa-th-list"></i> VIEW PROJECTS</a>
+            <a href="/secret/project/create" class="w3-bar-item w3-button"><i class="fa fa-plus"></i> CREATE PROJECT</a>
+          </div>
+        </div>
+        <div class="w3-dropdown-hover">
+          <div class="w3-button padding-btn"><i class="fa fa-square"></i> COMPONENTS</div>
+          <div class="w3-dropdown-content w3-bar-block w3-card">
+            <a href="/secret/component/view" class="w3-bar-item w3-button"><i class="fa fa-th-list"></i> VIEW COMPONENTS</a>
+            <div class="w3-dropdownsub-hover">
+              <div class="w3-button padding-btn"><i class="fa fa-square"></i> CREATE COMPONENTS</div>
+              <div class="w3-dropdownsub-content w3-bar-block w3-card">
+                <a href="/secret/component/create/fabric" class="w3-bar-item w3-button"><i class="fa fa-square-o"></i> Fabric</a>
+                <a href="/secret/component/create/pattern" class="w3-bar-item w3-button"><i class="fa fa-square-o"></i> Pattern</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      {{#if status.logged }}
+        <a href="/logout" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i> LOGOUT</a>
+      {{else}}
+        {{#if status.login }}
+        {{else}}
+          <a href="/signup" class="w3-bar-item w3-button"><i class="fa fa-user-plus"></i> SIGN UP</a>
+          <a href="/login" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN</a>
+        {{/if}}
+      {{/if}}
+      <div class="w3-bar-item w3-button" onclick="document.getElementById('cb-about').style.display='block'"><i class="fa fa-info"></i> ABOUT</div>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar-cb w3-bar-block w3-indigo w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-white w3-button w3-large w3-padding-16">Close ×</a>
+
+  <a href="/" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+  {{#if status.logged }}
+    <div class="w3-button padding-btn w3-wide"><i class="fa fa-th-large"></i> <u>PROJECTS</u></div>
+    <a href="/secret/project/view" onclick="w3_close()" class="w3-bar-item w3-button nav-ind"><i class="fa fa-th-list"></i> VIEW PROJECTS</a>
+    <a href="/secret/project/create" onclick="w3_close()" class="w3-bar-item w3-button nav-ind"><i class="fa fa-plus"></i> CREATE PROJECT</a>
+    <div class="w3-button padding-btn w3-wide"><i class="fa fa-square"></i> <u>COMPONENTS</u></div>
+      <a href="/secret/component/view" onclick="w3_close()" class="w3-bar-item w3-button nav-ind"><i class="fa fa-th-list"></i> VIEW COMPONENTS</a>
+      <div class="w3-button padding-btn nav-ind w3-wide"><i class="fa fa-square"></i> <u>CREATE COMPONENTS</u></div>
+      <div class="nav-ind">
+        <a href="/secret/component/create/fabric" onclick="w3_close()" class="w3-bar-item w3-button nav-ind"><i class="fa fa-square-o"></i> Fabric</a>
+        <a href="/secret/component/create/pattern" onclick="w3_close()" class="w3-bar-item w3-button nav-ind"><i class="fa fa-square-o"></i> Pattern</a>
+      </divclass="w3-button padding-btn nav-ind">
+      </div>
+    </div>
+  {{/if}}
+  {{#if status.logged }}
+    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i> LOGOUT</a>
+  {{else}}
+    {{#if status.login }}
+    {{else}}
+      <a href="/signup" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-user-plus"></i> SIGN UP</a>
+      <a href="/login" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> LOGIN</a>
+    {{/if}}
+  {{/if}}
+  <div onclick="w3_close(); document.getElementById('cb-about').style.display='block'" class="w3-bar-item w3-button"><i class="fa fa-info"></i> About</div>
+</nav>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
+{{> about this}}
+<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
+

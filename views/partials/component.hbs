@@ -1,17 +1,20 @@
-<div class= "w3-card w3-show-inline-block w3-padding w3-white" style="width: 23%">
-  <img src="{{this.imageUrl}}" alt="{{this.name}}" style="width:100%">
-  <div class="w3-container w3-center">
-    <p>{{this.name}}</p>
-    {{#if this.typeOfClothes}}
-    <p>{{this.typeOfClothes}}</p>
-    {{else}}
-    <p>&nbsp;</p>
-    {{/if}}
-  </div>
-  
-  <div class="w3-center">
-    <a href="/secret/component/detail/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-eye"></i> View</a>
-    <a href="/secret/component/edit/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-pencil"></i> Edit</a>
-    <a href="/secret/component/delete/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-red w3-small w3-margin-bottom"><i class="fa fa-trash"></i> Delete</a>
+<div class="w3-flex-item-c w3-card w3-white">
+  <div class="w3-flex-item-content">
+    <div class="w3-margin-bottom">
+      <img src="{{this.imageUrl}}" alt="{{this.name}}" style="width:100%">
+      <div class="w3-center">
+        <p>{{this.name}}</p>
+        {{#if this.typeOfClothes}}
+        <p>{{this.typeOfClothes}}</p>
+        {{else}}
+        <p>&nbsp;</p>
+        {{/if}}
+      </div>
+    </div>
+    <div class="w3-center">
+      <a href="/secret/component/detail/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-eye"></i> View</a>
+      <a href="/secret/component/edit/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-pencil"></i> Edit</a>
+      <a href="/secret/component/delete/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-red w3-small w3-margin-bottom"><i class="fa fa-trash"></i> Delete</a>
+    </div>
   </div>
 </div>

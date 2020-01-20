@@ -11,26 +11,16 @@ createComponentController.use((req, res, next) => {
         data.name = req.session.currentUser.fullName;
         next();
     } else {
-        data.source = "/about";
+        data.source = "/";
         res.render("index.hbs", data );
     }                             
 });    
 
-createComponentController.get('/about/:type/:id', (req, res, next) => {
-    let type = req.params.type;
-    let id = req.params.id;
-    data.source =`/secret/component/edit/${type}/${id}`;
-    data.status.about = true;
-
-    if(type == "pattern") res.render('secret/component-edit-pattern.hbs', data );
-    if(type == "fabric") res.render('secret/component-edit-fabric.hbs', data )
-});
-
 createComponentController.get('/:type/:id', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
-    data.source = `/secret/component/edit/about/${type}/${id}`;
-    delete data.status.about;
+    data.source = `/secret/component/edit/${type}/${id}`;
+    
 
     if(type == "pattern") {
         Pattern.findById(id)
@@ -50,15 +40,14 @@ createComponentController.get('/:type/:id', (req, res, next) => {
             .catch(err => {
                 next(err);
             })
-    }
-    
-  });
+    } 
+});
 
 createComponentController.post('/:type/:id', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
-    data.source = `/secret/component/edit/about/${type}/${id}`;
-    delete data.status.about;
+    data.source = `/secret/component/edit/${type}/${id}`;
+    
 
     if(type == "pattern") {
         const {name, description, typeOfClothes, instructions, imageUrl} = req.body;
@@ -82,7 +71,7 @@ createComponentController.post('/:type/:id', (req, res, next) => {
             })
     }
     
-  });
+});
 
 
 module.exports = createComponentController;

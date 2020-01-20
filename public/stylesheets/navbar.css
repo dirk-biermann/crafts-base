@@ -23,3 +23,7 @@
 .w3-dropdownsub-hover.w3-mobile .w3-dropdownsub-content,.w3-dropdownsub-click.w3-mobile .w3-dropdownsub-content{position:relative}	
 .w3-dropdownsub-hover.w3-mobile,.w3-dropdownsub-click.w3-mobile{text-align:center}
 .w3-dropdownsub-hover.w3-mobile,.w3-dropdownsub-hover.w3-mobile .w3-btn,.w3-dropdownsub-hover.w3-mobile .w3-button,.w3-dropdownsub-click.w3-mobile,.w3-dropdownsub-click.w3-mobile .w3-btn,.w3-dropdownsub-click.w3-mobile .w3-button{width:100%}}
+
+.w3-sidebar-cb{height:100%;width:100%;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
+
+.nav-ind{ padding-left: 50px !important;}
