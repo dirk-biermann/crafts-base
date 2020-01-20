@@ -16,7 +16,7 @@
     <div class="w3-center">
       <a href="/secret/component/detail/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-eye"></i> View</a>
       <a href="/secret/component/edit/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-blue w3-small w3-margin-bottom"><i class="fa fa-pencil"></i> Edit</a>
-      <a href="/secret/component/delete/{{this.type}}/{{this._id}}" class="w3-button w3-wide w3-red w3-small w3-margin-bottom"><i class="fa fa-trash"></i> Delete</a>
+      <form action="/secret/component/delete/{{this.type}}/{{this._id}}" method="get"><button type="submit"class="w3-button w3-wide w3-red w3-small w3-margin-bottom"><i class="fa fa-trash"></i>Delete</button></form>
     </div>
   </div>
 </div>

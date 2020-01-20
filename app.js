@@ -132,6 +132,9 @@ app.use('/secret/component/edit', component_edit);
 const component_create = require('./routes/secret/component-create.js');
 app.use('/secret/component/create', component_create);
 
+const component_delete = require('./routes/secret/component-delete.js');
+app.use('/secret/component/delete', component_delete);
+
 /*
 const create_room = require('./routes/secret/create.js');
 app.use('/secret/create', create_room);
