@@ -3,7 +3,7 @@ const createComponentController  = express.Router();
 const Fabric = require("../../models/fabric")
 const Pattern = require("../../models/pattern")
 
-const data = { router: "component_edit", status: {} };
+const data = { router: "object_delete", status: {} };
 
 createComponentController.use((req, res, next) => {
     if (req.session.currentUser) {
@@ -19,32 +19,35 @@ createComponentController.use((req, res, next) => {
 createComponentController.get('/:type/:id', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
-    data.source = `/secret/component/edit/${type}/${id}`;
-    
-
+    data.source = `/secret/delete/${type}/${id}`;
     if(type == "pattern") {
         Pattern.findById(id)
             .then((pattern) => { 
-                data.pattern = pattern;
+                data.object = pattern;
                 console.log(data);
-                res.render('secret/component-edit-pattern.hbs', data );
+                res.render('secret/delete.hbs', data );
             })
             .catch(err => {
                 next(err);
             })
     };
-
     if(type == "fabric") {
         Fabric.findById(id)
             .then((fabric) => {
-                data.fabric = fabric;
-                if(fabric.pattern === true){
-                    data.fabric.hasPattern = "checked";
-                }else{
-                    data.fabric.noPattern = "checked";
-                }
-                console.log("Inside fabric edit " , data)
-                res.render('secret/component-edit-fabric.hbs', data )
+                data.object = fabric;
+                console.log("Inside fabric delete " , data)
+                res.render('secret/delete.hbs', data )
+            })
+            .catch(err => {
+                next(err);
+            })
+    }; 
+    if(type == "project") {
+        Project.findById(id)
+            .then((project) => {
+                data.object = project;
+                console.log("Inside project delete " , data)
+                res.render('secret/delete.hbs', data )
             })
             .catch(err => {
                 next(err);
@@ -55,12 +58,10 @@ createComponentController.get('/:type/:id', (req, res, next) => {
 createComponentController.post('/:type/:id', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
-    data.source = `/secret/component/edit/${type}/${id}`;
+    data.source = `/secret/component/delete/${type}/${id}`;
     
-
     if(type == "pattern") {
-        const {name, description, typeOfClothes, instructions, imageUrl} = req.body;
-        Pattern.findByIdAndUpdate(id, {name, description, typeOfClothes, instructions, imageUrl})
+        Pattern.findByIdAndRemove(id)
             .then(() => { 
                 res.redirect('/secret/component/view/');
             })
@@ -68,12 +69,19 @@ createComponentController.post('/:type/:id', (req, res, next) => {
                 next(err);
             })
     };
-
     if(type == "fabric") {
-        const {name, description, length, width, imageUrl, material, color, pattern} = req.body;
-        Fabric.findByIdAndUpdate(id, {name, description, length, width, imageUrl, material, color, pattern})
+        Fabric.findByIdAndRemove(id)
             .then(() => {
                 res.redirect('/secret/component/view/');
+            })
+            .catch(err => {
+                next(err);
+            })
+    };
+    if(type == "project") {
+        Project.findByIdAndRemove(id)
+            .then(() => {
+                res.redirect('/secret/project/view/');
             })
             .catch(err => {
                 next(err);
