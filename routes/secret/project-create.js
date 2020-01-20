@@ -23,10 +23,10 @@ createProjectController.get('/', (req, res, next) => {
 
 createProjectController.post('/', (req, res, next) => {
     data.source = "/secret/project/create/";
-    const {title, description, notes, status} = req.body;
+    const {name, description, notes, status} = req.body;
     let currentUser = req.session.currentUser;
     const owner = currentUser._id;
-    Project.create({title, description, notes, status, owner})
+    Project.create({name, description, notes, status, owner})
       .then(() => {
           res.render('secret/project-create.hbs', data );
         })
