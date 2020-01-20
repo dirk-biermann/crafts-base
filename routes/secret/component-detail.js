@@ -16,7 +16,7 @@ createComponentController.use((req, res, next) => {
 
 createComponentController.get('/', (req, res, next) => {
     data.source = "/secret/component/";
-    data.pattern = [{ name: "pattern", typeOfClothes: "Shirt" },{ name: "pattern2", typeOfClothes: "Skirt" },{ name: "pattern3", typeOfClothes: "Trousers" }];
+    data.pattern = [{ title: "pattern", typeOfClothes: "Shirt" },{ title: "pattern2", typeOfClothes: "Skirt" },{ title: "pattern3", typeOfClothes: "Trousers" }];
     res.render('secret/component-detail.hbs', data );
   });
 

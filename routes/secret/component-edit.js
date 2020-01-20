@@ -25,6 +25,7 @@ createComponentController.get('/:type/:id', (req, res, next) => {
     if(type == "pattern") {
         Pattern.findById(id)
             .then((data) => { 
+                console.log("Inside pattern edit " , data)
                 res.render('secret/component-edit-pattern.hbs', data );
             })
             .catch(err => {
@@ -35,6 +36,7 @@ createComponentController.get('/:type/:id', (req, res, next) => {
     if(type == "fabric") {
         Fabric.findById(id)
             .then((data) => {
+                console.log("Inside fabric edit " , data)
                 res.render('secret/component-edit-fabric.hbs', data )
             })
             .catch(err => {
@@ -50,10 +52,10 @@ createComponentController.post('/:type/:id', (req, res, next) => {
     
 
     if(type == "pattern") {
-        const {name, description, typeOfClothes, instructions, imageUrl} = req.body;
-        Pattern.findByIdAndUpdate(id, {name, description, typeOfClothes, instructions, imageUrl})
+        const {title, description, typeOfClothes, instructions, imageUrl} = req.body;
+        Pattern.findByIdAndUpdate(id, {title, description, typeOfClothes, instructions, imageUrl})
             .then(() => { 
-                res.render('secret/component-edit-pattern.hbs', data );
+                res.render('secret/component-overview.hbs', data );
             })
             .catch(err => {
                 next(err);
@@ -61,10 +63,10 @@ createComponentController.post('/:type/:id', (req, res, next) => {
     };
 
     if(type == "fabric") {
-        const {name, description, length, width, imageUrl, material, color, pattern} = req.body;
-        Fabric.findByIdAndUpdate(id, {name, description, length, width, imageUrl, material, color, pattern})
+        const {title, description, length, width, imageUrl, material, color, pattern} = req.body;
+        Fabric.findByIdAndUpdate(id, {title, description, length, width, imageUrl, material, color, pattern})
             .then(() => {
-                res.render('secret/component-edit-fabric.hbs', data )
+                res.render('secret/component-overview.hbs', data )
             })
             .catch(err => {
                 next(err);
