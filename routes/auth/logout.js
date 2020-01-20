@@ -16,7 +16,11 @@ logoutController.get('/', function(req, res, next) {
         res.redirect("/");
       }
     });
+  }else{
+    res.clearCookie("connect.sid");
+    res.redirect("/");
   }
+
 });
 
 module.exports = logoutController;
