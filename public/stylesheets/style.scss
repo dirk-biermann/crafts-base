@@ -108,6 +108,7 @@ body {
   display: flex; 
   width: 96%;
   margin: 0 1em 1em 0;
+  border: red solid 1px;
 }
 .w3-flex-item {
   width: 100%;
@@ -130,11 +131,14 @@ body {
   }
 }
 
-.w3-flex-item-content {
+.w3-flex-item-content, .w3-flex-item-content-r {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   background-color: #fff;
   padding: 1em;
   width: 100%;
+}
+.w3-flex-item-content-r {
+  flex-direction: row;
 }

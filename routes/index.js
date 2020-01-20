@@ -13,15 +13,8 @@ mainController.use((req, res, next) => {
     next();                      
 });                               
 
-mainController.get('/about', (req, res, next) => {
-    data.source = "/";
-    data.status.about = true;
-    res.render('index.hbs', data );
-});
-
 mainController.get('/', (req, res, next) => {
-    data.source = "/about";
-    delete data.status.about;
+    data.source = "/";
     res.render('index.hbs', data );
 });
 
