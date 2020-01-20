@@ -7,8 +7,10 @@ const projectSchema = new Schema({
   owner:          { type: Schema.Types.ObjectId, ref: 'User'},
   description:    { type: String, required: false},
   notes:          { type: String},
-  components:     { type: Schema.Types.ObjectId, refPath: 'onModel'},
-  onModel:        { type: String, enum: ['Pattern', 'Fabric']},
+  components:     {
+    pattern: [ { type: Schema.Types.ObjectId, ref: 'Pattern'} ],
+    fabrics: [ { type: Schema.Types.ObjectId, ref: 'Fabric'} ]
+  },
   status:         { type: String, enum: ['New', 'Planned','Completed']}
 },{
   timestamps: {
