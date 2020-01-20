@@ -138,23 +138,6 @@ app.use('/secret/component/create', component_create);
 
 
 
-/*
-const create_room = require('./routes/secret/create.js');
-app.use('/secret/create', create_room);
-
-const edit_room = require('./routes/secret/edit.js');
-app.use('/secret/edit', edit_room);
-
-const delete_room = require('./routes/secret/delete.js');
-app.use('/secret/delete', delete_room);
-*/
-
-// routes COMMON views ------------------------------------
-/*
-const rooms = require('./routes/view/rooms.js');
-app.use('/view', rooms);
-*/
-
 const index = require('./routes/index');
 app.use('/', index);
 
