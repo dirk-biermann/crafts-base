@@ -17,9 +17,12 @@ detailProjectController.use((req, res, next) => {
 });    
 
 detailProjectController.get('/:pId', (req, res, next) => {
-  let projectId = req.params.pId;
+  const projectId = req.params.pId;
+  
   console.log( "PRJ-DETAIL PID:", projectId, req.param.pId)
   Project.findById(projectId)
+         .populate('components.fabrics')
+         .populate('components.pattern')
     .then((theProject) => {
       data.source = `/secret/project/detail/${theProject._id}`;
       data.project = theProject;
