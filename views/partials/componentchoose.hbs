@@ -1,0 +1,25 @@
+<div class="w3-flex-item-c w3-card w3-white">
+  <div class="w3-flex-item-content">
+    <div class="w3-margin-bottom">
+      <div class="comp-img">
+        {{#if this.imageUrl}}
+        <img src="{{this.imageUrl}}" alt="{{this.name}}">
+        {{else}}
+        <img src="{{this.defImage}}" alt="def-pic">
+        {{/if}}
+      </div>
+      <div class="w3-center">
+        <p>{{this.name}}</p>
+        {{#if this.typeOfClothes}}
+        <p>{{this.typeOfClothes}}</p>
+        {{else}}
+        <p>&nbsp;</p>
+        {{/if}}
+      </div>
+    </div>
+    <div class="w3-center">
+      <input class="w3-check" type="checkbox" name="{{this._id}}">
+      <label>Add to Project</label>
+    </div>
+  </div>
+</div>

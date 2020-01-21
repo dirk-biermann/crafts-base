@@ -24,10 +24,10 @@ createComponentController.get('/fabric', (req, res, next) => {
 
 createComponentController.post('/fabric', (req, res, next) => {
     data.source = "/secret/component/create/fabric/";
-    const {title, description, length, width, imageUrl, material, color, pattern} = req.body;
+    const {name, description, length, width, imageUrl, material, color, pattern} = req.body;
     let currentUser = req.session.currentUser;
     const owner = currentUser._id;
-    Fabric.create({title, description, length, width, imageUrl, material, color, pattern, owner})
+    Fabric.create({name, description, length, width, imageUrl, material, color, pattern, owner})
       .then(() => {
           res.render('secret/component-create-fabric.hbs', data );
         })
@@ -44,11 +44,11 @@ createComponentController.get('/pattern', (req, res, next) => {
 
 createComponentController.post('/pattern', (req, res, next) => {
   data.source = "/secret/component/create/pattern/";
-  const {title, description, typeOfClothes, instructions, imageUrl} = req.body;
+  const {name, description, typeOfClothes, instructions, imageUrl} = req.body;
   let currentUser = req.session.currentUser;
   const owner = currentUser._id;
   
-  Pattern.create({title, description, typeOfClothes, instructions, imageUrl, owner})
+  Pattern.create({name, description, typeOfClothes, instructions, imageUrl, owner})
     .then(() => {
         res.render('secret/component-create-pattern.hbs', data );
       })

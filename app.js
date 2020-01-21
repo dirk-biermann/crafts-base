@@ -60,32 +60,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 hbs.registerPartials(__dirname + '/views/partials');
-hbs.registerHelper({
-    eq: function (v1, v2) {
-        return v1 === v2;
-    },
-    ne: function (v1, v2) {
-        return v1 !== v2;
-    },
-    lt: function (v1, v2) {
-        return v1 < v2;
-    },
-    gt: function (v1, v2) {
-        return v1 > v2;
-    },
-    lte: function (v1, v2) {
-        return v1 <= v2;
-    },
-    gte: function (v1, v2) {
-        return v1 >= v2;
-    },
-    and: function () {
-        return Array.prototype.slice.call(arguments).every(Boolean);
-    },
-    or: function () {
-        return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
-    }
-});
 
 // default value for title local
 app.locals.title = 'Crafts Base';
@@ -123,6 +97,9 @@ app.use('/secret/project/create', project_create);
 const project_edit = require('./routes/secret/project-edit.js');
 app.use('/secret/project/edit', project_edit);
 
+const project_add_components = require('./routes/secret/project-add-component.js');
+app.use('/secret/project/addcomponent', project_add_components);
+
 // COMPONENT 
 const component_overview = require('./routes/secret/component-overview.js');
 app.use('/secret/component/view', component_overview);
@@ -135,8 +112,6 @@ app.use('/secret/component/edit', component_edit);
 
 const component_create = require('./routes/secret/component-create.js');
 app.use('/secret/component/create', component_create);
-
-
 
 const index = require('./routes/index');
 app.use('/', index);

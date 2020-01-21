@@ -18,7 +18,9 @@ viewProjectController.use((req, res, next) => {
 
 viewProjectController.get('/', (req, res, next) => {
   data.source = "/secret/project/view/";
-  Project.find(function (err, projects) {
+  const owner = req.session.currentUser._id;
+
+  Project.find( { owner: owner }, null , function (err, projects) {
       if (err) {
           console.log(err);
       } else {
@@ -26,7 +28,6 @@ viewProjectController.get('/', (req, res, next) => {
           res.render('secret/project-overview.hbs', data );
       }
   });
-
 });
 
 module.exports = viewProjectController;
