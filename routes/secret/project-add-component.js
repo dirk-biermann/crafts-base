@@ -50,16 +50,7 @@ addComponentProjectController.get('/:pId', async (req, res, next) => {
         return res < 0;
       });
     
-    //console.log( "FAB", allFabrics);
-    //console.log( "PAT", allPatterns);
-    console.log( "DFAB", data.fabric);
-    console.log( "DPAT", data.pattern);
-
-    console.log( "PRJ", currentProject.components);
-
     data.project = currentProject;
-
-    //console.log( "Component Add To Project", data );
     res.render("secret/project-add-component.hbs", data);
   } catch (err) {
     next(err);
@@ -82,11 +73,6 @@ addComponentProjectController.post('/:pId', async (req, res, next) => {
     
     allFabrics.forEach( fabric => { if( componentIds.includes( fabric._id.toString() ) ) { currentProject.components.fabrics.push( fabric._id.toString() ) } });
     allPatterns.forEach( pattern => { if( componentIds.includes( pattern._id.toString() ) ) { currentProject.components.pattern.push( pattern._id.toString() ) } });
-
-    console.log( "FAB", allFabrics);
-    console.log( "PAT", allPatterns);
-    console.log( "COMP", componentIds);
-    console.log( "PRJ", JSON.stringify(currentProject.components));
 
     await Project.findByIdAndUpdate( projectId, { $set: { components: currentProject.components } } );
 
