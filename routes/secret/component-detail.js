@@ -1,14 +1,15 @@
 const express = require('express');
 const createComponentController  = express.Router();
-const Fabric = require("../../models/fabric")
-const Pattern = require("../../models/pattern")
 
 const data = { router: "component_detail", status: {} };
+
+const Fabric = require("../../models/fabric")
+const Pattern = require("../../models/pattern")
 
 createComponentController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
-        data.name = req.session.currentUser.fullName;
+        data.name = req.session.currentUser.username;
         next();
     } else {
         data.source = "/";
