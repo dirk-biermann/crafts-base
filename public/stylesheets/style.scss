@@ -160,4 +160,21 @@ p {
 
 .w3-ta-3 { height: 4rem; min-height: 4rem; max-height: 16rem; min-width: 100%; max-width: 100%; }
 
+.w3-round-large-up {
+  border-radius: 8px
+}
+
 .fa-pad { padding-right: 4px;}
+
+.font-allerta { font-family: "Allerta Stencil", Sans-serif;}
+
+.w3-row-padding { padding: 0px !important;}
+
+.w3-row-padding div:first-child { padding-left: 0px !important;}
+.w3-row-padding div:last-child { padding-right: 0px !important;}
+
+@media (max-width:600px) {
+  .w3-row-padding div:first-child { padding: 0px !important;}
+  .w3-row-padding div:last-child { padding: 0px !important;}
+}
+
