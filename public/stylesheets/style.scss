@@ -26,6 +26,12 @@ body {
   color: #000;
 }
 
+p {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin: 0px;
+}
+
 .w3-bar .w3-button {
   padding: 16px;
 }
@@ -153,3 +159,5 @@ body {
 }
 
 .w3-ta-3 { height: 4rem; min-height: 4rem; max-height: 16rem; min-width: 100%; max-width: 100%; }
+
+.fa-pad { padding-right: 4px;}
