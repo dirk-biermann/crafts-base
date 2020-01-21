@@ -18,17 +18,36 @@ editProjectController.use((req, res, next) => {
 
 editProjectController.get('/:pId', (req, res, next) => {
   let projectId = req.params.pId;
-  console.log( "PRJ-EDIT PID:", projectId, req.param.pId)
+  console.log( "PRJ-EDIT PID:", projectId );
   Project.findById(projectId)
     .then((theProject) => {
       data.source = `/secret/project/edit/${theProject._id}`;
       data.project = theProject;
+
+      data.project.checkedStatus = {};
+      data.project.checkedStatus[data.project.status] = 'selected';
+
+      console.log( "DATA PRJ", data);
       res.render('secret/project-edit.hbs', data );
     })
     .catch(error => {
       console.log('Error while retrieving project details: ', error);
       next(error);
     })
+});
+
+editProjectController.post('/:pId', (req, res, next) => {
+  let projectId = req.params.pId;
+  const {name, description, notes, status} = req.body;
+
+  Project.findByIdAndUpdate(projectId, {name, description, notes, status})
+      .then(() => { 
+        res.redirect('/secret/project/view/');
+      })
+      .catch(err => {
+        console.log('Error while editing project details: ', error);
+        next(err);
+      })
 });
 
 module.exports = editProjectController;
