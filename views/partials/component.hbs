@@ -2,7 +2,11 @@
   <div class="w3-flex-item-content">
     <div class="w3-margin-bottom">
       <div class="comp-img">
+        {{#if this.imageUrl}}
         <img src="{{this.imageUrl}}" alt="{{this.name}}">
+        {{else}}
+        <img src="{{this.defImage}}" alt="def-pic">
+        {{/if}}
       </div>
       <div class="w3-center">
         <p>{{this.name}}</p>

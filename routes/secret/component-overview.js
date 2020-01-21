@@ -22,6 +22,8 @@ createComponentController.get("/", async (req, res, next) => {
     data.source = "/secret/component/view/";
     const allFabrics = await Fabric.find();
     const allPatterns = await Pattern.find();
+    allFabrics.forEach(element => element.defImage = "/images/def-fabric.png");
+    allPatterns.forEach(element => element.defImage = "/images/def-pattern.png");
     data.fabric = allFabrics;
     data.pattern = allPatterns;
     console.log( "Component Overview", data );
