@@ -19,12 +19,20 @@ detailProjectController.use((req, res, next) => {
 detailProjectController.get('/:pId', (req, res, next) => {
   const projectId = req.params.pId;
   
-  console.log( "PRJ-DETAIL PID:", projectId, req.param.pId)
+  console.log( "PRJ-DETAIL PID:", projectId )
   Project.findById(projectId)
          .populate('components.fabrics')
          .populate('components.pattern')
     .then((theProject) => {
       data.source = `/secret/project/detail/${theProject._id}`;
+      
+      theProject.components.fabrics.forEach(element => element.defImage = "/images/def-fabric.png");
+      theProject.components.pattern.forEach(element => element.defImage = "/images/def-pattern.png");
+
+      // mark components for deleting them only out of project
+      theProject.components.fabrics.forEach( element => { element.type = 'fabric-from-project'; element.prjId = theProject._id.toString(); } );
+      theProject.components.pattern.forEach( element => { element.type = 'pattern-from-project'; element.prjId = theProject._id.toString(); } );
+  
       data.project = theProject;
       res.render('secret/project-detail.hbs', data );
     })
