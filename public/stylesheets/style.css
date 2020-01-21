@@ -21,6 +21,11 @@ body {
   background-color: #ffffff;
   color: #000; }
 
+p {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin: 0px; }
+
 .w3-bar .w3-button {
   padding: 16px; }
 
@@ -157,5 +162,8 @@ body {
   max-height: 16rem;
   min-width: 100%;
   max-width: 100%; }
+
+.fa-pad {
+  padding-right: 4px; }
 
 /*# sourceMappingURL=style.css.map */

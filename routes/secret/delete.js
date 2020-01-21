@@ -1,15 +1,16 @@
 const express = require('express');
 const createComponentController  = express.Router();
+
+const data = { router: "object_delete", status: {} };
+
 const Fabric = require("../../models/fabric");
 const Pattern = require("../../models/pattern");
 const Project = require("../../models/project");
 
-const data = { router: "object_delete", status: {} };
-
 createComponentController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
-        data.name = req.session.currentUser.fullName;
+        data.name = req.session.currentUser.username;
         next();
     } else {
         data.source = "/";

@@ -7,7 +7,7 @@ const User = require('../../models/user');
 const bcrypt         = require("bcryptjs");
 const bcryptSalt     = 10;
 
-let data = { router: "login", status: { login: true } };
+let data = { router: "login", status: {} };
 
 loginController.get('/', (req, res, next) => {
     data.source = "/login/";
