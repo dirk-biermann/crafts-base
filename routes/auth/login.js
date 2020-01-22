@@ -13,12 +13,14 @@ loginController.get('/', (req, res, next) => {
     data.source = "/login/";
     delete data.status.about;
     res.render( 'auth/login.hbs', data );
+    delete data.errorMessage;
 });
 
 loginController.post("/", (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
     delete data.status.about;
+    delete data.errorMessage;
 
     if (username === "" || password === "") {
         data.errorMessage = "username or password not correct";
