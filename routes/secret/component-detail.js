@@ -1,23 +1,24 @@
 const express = require('express');
-const createComponentController  = express.Router();
+const viewComponentController  = express.Router();
 
 const data = { router: "component_detail", status: {} };
 
 const Fabric = require("../../models/fabric")
 const Pattern = require("../../models/pattern")
 
-createComponentController.use((req, res, next) => {
+viewComponentController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
         data.name = req.session.currentUser.username;
         next();
     } else {
-        data.source = "/";
-        res.render("index.hbs", data );
+        data.source = "/login/";
+        delete data.status.about;
+        res.render( 'auth/login.hbs', data );
     }                             
 });
 
-createComponentController.get('/:type/:id/:pid', (req, res, next) => {
+viewComponentController.get('/:type/:id/:pid', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
     const pid = req.params.pid;
@@ -56,7 +57,7 @@ createComponentController.get('/:type/:id/:pid', (req, res, next) => {
     }; 
 });
 
-createComponentController.get('/:type/:id', (req, res, next) => {
+viewComponentController.get('/:type/:id', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
     data.source = `/secret/component/detail/${type}/${id}`;
@@ -90,4 +91,4 @@ createComponentController.get('/:type/:id', (req, res, next) => {
 });
 
   
-  module.exports = createComponentController;
+  module.exports = viewComponentController;
