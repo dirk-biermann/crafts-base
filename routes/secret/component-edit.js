@@ -21,7 +21,7 @@ editComponentController.use((req, res, next) => {
 editComponentController.get('/:type/:id/:pid', (req, res, next) => {
     const type = req.params.type;
     const id = req.params.id;
-    const pid = req.params.id;
+    const pid = req.params.pid;
     data.source = `/secret/component/edit/${type}/${id}/${pid}`;
     
 
@@ -71,7 +71,7 @@ editComponentController.post('/:type/:id/:pid', (req, res, next) => {
         const {name, description, typeOfClothes, instructions, imageUrl} = req.body;
         Pattern.findByIdAndUpdate(id, {name, description, typeOfClothes, instructions, imageUrl})
             .then(() => { 
-                res.redirect(`/secret/project/view/${pid}`);
+                res.redirect(`/secret/project/detail/${pid}`);
             })
             .catch(err => {
                 next(err);
@@ -82,7 +82,7 @@ editComponentController.post('/:type/:id/:pid', (req, res, next) => {
         const {name, description, length, width, imageUrl, material, color, pattern} = req.body;
         Fabric.findByIdAndUpdate(id, {name, description, length, width, imageUrl, material, color, pattern})
             .then(() => {
-                res.redirect(`/secret/project/view/${pid}`);
+                res.redirect(`/secret/project/detail/${pid}`);
             })
             .catch(err => {
                 next(err);
