@@ -9,6 +9,9 @@ mainController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
         data.name = req.session.currentUser.username;
+    } else {
+        delete data.status.logged;
+        delete data.name;
     }
     next();                      
 });                               
