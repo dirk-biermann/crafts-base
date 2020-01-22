@@ -1,24 +1,25 @@
 const express = require('express');
-const createComponentController  = express.Router();
+const viewComponentController  = express.Router();
 
 const data = { router: "component_overview", status: {} };
 
 const Fabric = require("../../models/fabric")
 const Pattern = require("../../models/pattern")
 
-createComponentController.use((req, res, next) => {
+viewComponentController.use((req, res, next) => {
     if (req.session.currentUser) {
         data.status.logged = true;
         data.name = req.session.currentUser.username;
         next();
     } else {
-        data.source = "/";
-        res.render("index.hbs", data );
+      data.source = "/login/";
+      delete data.status.about;
+      res.render( 'auth/login.hbs', data );
     }                             
 });    
 
 
-createComponentController.get("/", async (req, res, next) => {
+viewComponentController.get("/", async (req, res, next) => {
   try {
     data.source = "/secret/component/view/";
     const owner = req.session.currentUser._id;
@@ -37,4 +38,4 @@ createComponentController.get("/", async (req, res, next) => {
 
 
 
-module.exports = createComponentController;
+module.exports = viewComponentController;

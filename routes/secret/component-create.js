@@ -12,8 +12,9 @@ createComponentController.use((req, res, next) => {
         data.name = req.session.currentUser.username;
         next();
     } else {
-        data.source = "/";
-        res.render("index.hbs", data );
+      data.source = "/login/";
+      delete data.status.about;
+      res.render( 'auth/login.hbs', data );
     }                             
 });    
 
