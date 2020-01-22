@@ -99,10 +99,12 @@ deleteObjectController.get('/:type/:id', (req, res, next) => {
                 next(err);
             })
     }; 
-    if(type == "project") {
+    if(type == "project" || (type == "project-detail")) {
         Project.findById(id)
             .then((project) => {
                 data.object = project;
+                data.type = {};
+                data.type[type]=type;
                 console.log("Inside project delete " , data)
                 res.render('secret/delete.hbs', data )
             })
