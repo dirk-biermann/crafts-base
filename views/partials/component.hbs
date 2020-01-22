@@ -2,7 +2,6 @@
   <div class="w3-flex-item-content">
     <div class="w3-margin-bottom">
       <div class="comp-img w3-center w3-margin-bottom">
-        <p>[{{this.prjId}}]</p>
         {{#if this.imageUrl}}
         <img src="{{this.imageUrl}}" alt="{{this.name}}">
         {{else}}
@@ -21,8 +20,14 @@
     <div class="w3-center">
       <a href="/secret/component/detail/{{this.type}}/{{this._id}}/" class="w3-button w3-blue w3-small"><i class="fa fa-eye fa-pad"></i>View</a>
       <a href="/secret/component/edit/{{this.type}}/{{this._id}}" class="w3-button w3-blue w3-small"><i class="fa fa-pencil fa-pad"></i>Edit</a>
-      <form class="w3-button" style="padding: 0;" action="/secret/delete/{{this.type}}/{{this._id}}{{#if this.prjId}}/{{this.prjId}}{{/if}}" method="get">
-        <button type="submit" class="w3-button w3-red w3-small"><i class="fa fa-trash fa-pad"></i>Delete</button>
+      <form class="w3-button" style="padding: 0;" action="/secret/delete/{{this.type}}{{this.type_prj}}/{{this._id}}{{#if this.prjId}}/{{this.prjId}}{{/if}}" method="get">
+        <button type="submit" class="w3-button w3-red w3-small">
+          {{#if this.prjId}}
+            <i class="fa fa-minus fa-pad"></i>Remove
+          {{else}}
+            <i class="fa fa-trash fa-pad"></i>Delete
+          {{/if}}
+          </button>
       </form>
     </div>
   </div>

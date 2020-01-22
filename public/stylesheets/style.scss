@@ -119,7 +119,15 @@ p {
   width: 100%;
 }
 
-@media all and (min-width: 40em) {
+@media all and (min-width: 670px) {
+  .w3-flex-item-p {
+    width: 43%;
+  }
+  .w3-flex-item-c {
+    width: 43%;
+  }
+}
+@media all and (min-width: 910px) {
   .w3-flex-item-p {
     width: 43%;
   }
@@ -127,7 +135,7 @@ p {
     width: 31%;
   }
 }
-@media all and (min-width: 60em) {
+@media all and (min-width: 1410px) {
   .w3-flex-item-p {
     width: 31%;
   }
