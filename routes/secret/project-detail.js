@@ -30,8 +30,8 @@ detailProjectController.get('/:pId', (req, res, next) => {
       theProject.components.pattern.forEach(element => element.defImage = "/images/def-pattern.png");
 
       // mark components for deleting them only out of project
-      theProject.components.fabrics.forEach( element => { element.type = 'fabric-from-project'; element.prjId = theProject._id.toString(); } );
-      theProject.components.pattern.forEach( element => { element.type = 'pattern-from-project'; element.prjId = theProject._id.toString(); } );
+      theProject.components.fabrics.forEach( element => { element.type_prj = '-from-project'; element.prjId = theProject._id.toString(); } );
+      theProject.components.pattern.forEach( element => { element.type_prj = '-from-project'; element.prjId = theProject._id.toString(); } );
   
       data.project = theProject;
       res.render('secret/project-detail.hbs', data );

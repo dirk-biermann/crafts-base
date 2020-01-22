@@ -51,6 +51,10 @@ addComponentProjectController.get('/:pId', async (req, res, next) => {
       });
     
     data.project = currentProject;
+
+    data.fabric.forEach(element => element.defImage = "/images/def-fabric.png");
+    data.pattern.forEach(element => element.defImage = "/images/def-pattern.png");
+
     res.render("secret/project-add-component.hbs", data);
   } catch (err) {
     next(err);
