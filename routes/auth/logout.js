@@ -12,6 +12,10 @@ logoutController.get('/', function(req, res, next) {
       next(err);
     } else {
       res.clearCookie("connect.sid");
+      
+      delete data.status.logged;
+      delete data.name;
+
       res.redirect("/");
     }
   });
