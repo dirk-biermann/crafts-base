@@ -18,8 +18,8 @@
       </div>
     </div>
     <div class="w3-center">
-      <a href="/secret/component/detail/{{this.type}}/{{this._id}}/" class="w3-button w3-blue w3-small"><i class="fa fa-eye fa-pad"></i>View</a>
-      <a href="/secret/component/edit/{{this.type}}/{{this._id}}" class="w3-button w3-blue w3-small"><i class="fa fa-pencil fa-pad"></i>Edit</a>
+      <a href="/secret/component/detail/{{this.type}}/{{this._id}}{{#if this.prjId}}/{{this.prjId}}{{/if}}" class="w3-button w3-blue w3-small"><i class="fa fa-eye fa-pad"></i>View</a>
+      <a href="/secret/component/edit/{{this.type}}/{{this._id}}{{#if this.prjId}}/{{this.prjId}}{{/if}}" class="w3-button w3-blue w3-small"><i class="fa fa-pencil fa-pad"></i>Edit</a>
       <form class="w3-button" style="padding: 0;" action="/secret/delete/{{this.type}}{{this.type_prj}}/{{this._id}}{{#if this.prjId}}/{{this.prjId}}{{/if}}" method="get">
         <button type="submit" class="w3-button w3-red w3-small">
           {{#if this.prjId}}
